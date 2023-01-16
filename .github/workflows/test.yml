@@ -12,10 +12,10 @@ on:
 jobs:
   release_tag:
     # This job only runs for pull request comments
-    name: PR comment
+    name: Release Tag
     runs-on: ubuntu-latest
     outputs:
-      tag: ${{ steps.release-tag.outputs.tag }}
+      tag: ${{ steps.split.outputs.fragment }}
     steps:
       - name: Get Release Tag
         id: release-tag
@@ -23,11 +23,6 @@ jobs:
           echo ::set-output name=tag::$(echo $GITHUB_REF | cut -d "[" -f2 | cut -d "]" -f1)
         env:
           GITHUB_REF: $GITHUB_REF
-
-      - name: Print Hey
-        if: contains(steps.release-tag.outputs.tag, 'sandbox')
-        run: |
-          echo 'OLDU SANIRIM'
 
       - name: Split tag name
         env:
@@ -37,17 +32,6 @@ jobs:
       
       - name: Print
         run: echo ${{ steps.split.outputs.fragment}}
-
-      # - name: Get PR Comment
-      #   id: pr-comment
-      #   run: |
-      #     echo ::set-output name=comment::$(echo $PR_COMMENT | cut -d "[" -f2 | cut -d "]" -f1)
-      #   env:
-      #     PR_COMMENT: ${{ github.event.comment.body }}
-      # - name: Run if previous step outputs "@deploy otc" word
-      #   if: contains(steps.pr-comment.outputs.comment, '@deploy otc')
-      #   run: |
-      #     echo ${{ steps.pr-comment.outputs.comment }}
 
   deploy:
     needs: release_tag
