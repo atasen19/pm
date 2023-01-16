@@ -51,14 +51,14 @@ jobs:
 
   deploy:
     needs: release_tag
-    if: contains(needs.release_tag.outputs.tag, 'sandbox')
+    # if: contains(needs.release_tag.outputs.tag, 'sandbox')
     name: Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Print Hey
         # if: contains(steps.release-tag.outputs.tag, 'sandbox')
         run: |
-          echo 'OLDU SANIRIM'
+          echo ${{needs.release_tag.outputs.tag}}
   # issue_commented:
   #   # This job only runs for issue comments
   #   name: Issue comment
