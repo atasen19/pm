@@ -1,11 +1,5 @@
 name: BURAYA BAK
 on: 
-  # workflow_dispatch:
-  # workflow_call:
-  # issue_comment:
-  #   types: [created]
-  #   branches:
-  #     - new_deployment
   release:
     types: [published]
 
@@ -35,21 +29,10 @@ jobs:
 
   deploy:
     needs: release_tag
-    # if: contains(needs.release_tag.outputs.tag, 'sandbox')
     name: Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Print Hey
-        # if: contains(steps.release-tag.outputs.tag, 'sandbox')
         run: |
-          echo ${{needs.release_tag.outputs.fragment}}
-  # issue_commented:
-  #   # This job only runs for issue comments
-  #   name: Issue comment
-  #   if: ${{ !github.event.issue.pull_request }}
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - run: |
-  #         echo A comment on issue $NUMBER
-  #       env:
-  #         NUMBER: ${{ github.event.issue.number }}
+          echo ${{needs.release_tag.outputs.tag}}
+
