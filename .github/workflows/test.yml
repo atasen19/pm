@@ -58,7 +58,7 @@ jobs:
       - name: Print Hey
         # if: contains(steps.release-tag.outputs.tag, 'sandbox')
         run: |
-          echo ${{needs.release_tag.outputs.tag}}
+          echo ${{needs.release_tag.outputs.fragment}}
   # issue_commented:
   #   # This job only runs for issue comments
   #   name: Issue comment
