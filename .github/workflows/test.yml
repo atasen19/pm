@@ -26,13 +26,25 @@ jobs:
       
       - name: Print
         run: echo ${{ steps.split.outputs.fragment}}
+  
+  setup: 
+    name: Setup
+    runs-on: ubuntu-latest
+    outputs:
+      registry: ${{ steps.split.outputs.fragment }}
+    steps:
+    - name: Split tag name
+      id: split
+      run: echo "::set-output name=fragment::deneme"
 
   deploy:
-    needs: release_tag
+    needs: [release_tag, setup]
     name: Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Print Hey
         run: |
           echo ${{needs.release_tag.outputs.tag}}
-
+      - name: Print Fragment
+        run: |
+          echo ${{needs.setup.outputs.registry}}
