@@ -58,4 +58,10 @@ jobs:
           echo ${{needs.release_tag.outputs.tag}}
       - name: Print Fragment
         run: |
-          echo "${{ format('{0} says {1}', $TAG, matrix.app) }}"
+          echo "${{ format('{0} says {1}', ${{ steps.string.outputs.uppercase }}, matrix.app) }}"
+
+
+
+# ${{ secrets[format('{0}_NETLIFY_SITE_ID', github.event.inputs.lane)] }}
+
+# ${{ secrets[format('NEW_RELIC_{0}_APPLICATION_ID', ${{ steps.string.outputs.uppercase }} }}
