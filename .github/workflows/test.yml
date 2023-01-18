@@ -50,10 +50,12 @@ jobs:
     needs: [release_tag, setup]
     name: Deploy
     runs-on: ubuntu-latest
+    env:
+      TAG: KEREM
     steps:
       - name: Print Hey
         run: |
           echo ${{needs.release_tag.outputs.tag}}
       - name: Print Fragment
         run: |
-          echo ${{needs.setup.outputs.registry}}
+          echo ${{needs.setup.outputs.registry_format('env/{0}')}}
