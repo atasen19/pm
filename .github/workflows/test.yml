@@ -31,7 +31,7 @@ jobs:
           string: main
       
       - name: Print
-        run: echo ${{ steps.string.outputs.capitalize }}
+        run: echo ${{ steps.string.outputs.capitalized }}
   
   setup: 
     name: Setup
