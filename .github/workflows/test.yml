@@ -58,7 +58,7 @@ jobs:
           echo ${{needs.release_tag.outputs.tag}}
       - name: Print Fragment
         run: |
-          echo "${{ secrets[format('MY_{0}_SECRET', $TAG)] }}"
+          echo "${{ secrets[format('MY_{0}_SECRET', ${{matrix.app}})] }}"
 
 
 
