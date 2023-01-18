@@ -28,7 +28,7 @@ jobs:
         id: string
         uses: ASzc/change-string-case-action@v5
         with:
-          string: ${{ steps.split.outputs.fragment }}
+          string: main
       
       - name: Print
         run: echo ${{ steps.string.outputs.uppercase }}
