@@ -23,9 +23,15 @@ jobs:
           TAG: ${{ steps.release-tag.outputs.tag }}
         id: split
         run: echo "::set-output name=fragment::${TAG#*-}"
+
+      - name: Upper case
+        id: string
+        uses: ASzc/change-string-case-action@v5
+        with:
+          string: ${{ steps.split.outputs.fragment }}
       
       - name: Print
-        run: echo ${{ steps.split.outputs.fragment}}.toUpperCase()
+        run: echo ${{ steps.string.outputs.uppercase }}
   
   setup: 
     name: Setup
