@@ -35,6 +35,10 @@ jobs:
       
       - name: Print
         run: echo ${{ steps.string.outputs.capitalized }}
+
+      - name: Print Fragment
+        run: |
+          echo "${{ secrets[format('MY_{0}_SECRET', ${{ steps.string.outputs.capitalized }} )] }}"
   
   setup: 
     name: Setup
@@ -56,9 +60,6 @@ jobs:
       - name: Print Hey
         run: |
           echo ${{needs.release_tag.outputs.tag}}
-      - name: Print Fragment
-        run: |
-          echo "${{ secrets[format('MY_{0}_SECRET', ${{matrix.app}})] }}"
 
 
 
