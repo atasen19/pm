@@ -25,7 +25,7 @@ jobs:
         run: echo "::set-output name=fragment::${TAG#*-}"
       
       - name: Print
-        run: echo ${{ steps.split.outputs.fragment}}.upper()
+        run: echo ${{ steps.split.outputs.fragment}}.toUpperCase()
   
   setup: 
     name: Setup
