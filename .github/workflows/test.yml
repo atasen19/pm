@@ -58,4 +58,4 @@ jobs:
           echo ${{needs.release_tag.outputs.tag}}
       - name: Print Fragment
         run: |
-          echo ${{format(needs.setup.outputs.registry_'env/{0}')}}
+          echo ${{format('env/{0}')}}
