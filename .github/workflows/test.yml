@@ -51,14 +51,14 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     env:
-      TAG: KEREM
+      TAG: PM
     steps:
       - name: Print Hey
         run: |
           echo ${{needs.release_tag.outputs.tag}}
       - name: Print Fragment
         run: |
-          echo "${{ format('{0} says {1}', ${{ steps.string.outputs.uppercase }}, matrix.app) }}"
+          echo "${{ secrets[format('MY_{0}_SECRET, $TAG }}"
 
 
 
