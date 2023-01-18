@@ -37,8 +37,10 @@ jobs:
         run: echo ${{ steps.string.outputs.capitalized }}
 
       - name: Print Fragment
+        env: 
+          ENVIRONMENT: PM
         run: |
-          echo "${{ secrets[format('MY_{0}_SECRET', ${{ steps.string.outputs.capitalized }} )] }}"
+          echo "${{ secrets[format('MY_{0}_SECRET', env.ENVIRONMENT )] }}"
   
   setup: 
     name: Setup
