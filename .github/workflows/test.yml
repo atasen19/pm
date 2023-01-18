@@ -8,6 +8,9 @@ jobs:
     # This job only runs for pull request comments
     name: Release Tag
     runs-on: ubuntu-latest
+    strategy:
+      matrix: 
+        app: [main, organizations, otc]
     outputs:
       tag: ${{ steps.split.outputs.fragment }}
     steps:
@@ -28,7 +31,7 @@ jobs:
         id: string
         uses: ASzc/change-string-case-action@v5
         with:
-          string: main
+          string: ${{ matrix.app }}
       
       - name: Print
         run: echo ${{ steps.string.outputs.capitalized }}
