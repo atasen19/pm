@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: 
-        app: [main, organizations, otc]
+        app: [main, organizations, otc, pm]
     outputs:
       tag: ${{ steps.split.outputs.fragment }}
     steps:
