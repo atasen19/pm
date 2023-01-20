@@ -38,7 +38,8 @@ jobs:
 
       - name: Print Fragment
         env: 
-          ENVIRONMENT: ${{ steps.string.outputs.capitalized }}
+          # ENVIRONMENT: ${{ steps.string.outputs.capitalized }}
+          ENVIRONMENT: ${{ matrix.app }}
         run: |
           echo "${{ secrets[format('MY_{0}_SECRET', env.ENVIRONMENT )] }}"
   
